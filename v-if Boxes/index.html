@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if Boxes</title>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+
+        .box {
+            border: 2px solid black;
+            width: 200px;
+            height: 200px;
+        }
+
+        .box1 {
+            background: red;
+        }
+        .box2 {
+            background: green;
+        }
+        .box3 {
+            background: blue;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div id="app" v-cloak>
+        <div v-if="isVisibleBox1" class="box box1"></div>
+        <div v-else-if="isVisibleBox2" class="box box2"></div>
+        <div v-else class="box box3"></div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data: function() {
+                return {
+                    isVisibleBox1: false,
+                    isVisibleBox2: false
+                }
+            }
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+</html>
