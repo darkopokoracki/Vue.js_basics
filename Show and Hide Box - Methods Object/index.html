@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show and Hide Box - Methods Object</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        button {
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            padding: .5rem;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            transition: transform 150ms ease-out;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .showButton {
+            margin-right: 1rem;
+            background: green;
+        }
+
+        .hideButton {
+            background: red;
+        }
+
+        .box {
+            border: 1px solid black;
+            border-radius: 10px;
+            background: teal;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>  
+    <h1>Show and Hide Box with functions that is in Methods Object</h1>
+
+    <div id="app" v-cloak>
+        <div class="buttons">
+            <button class="showButton" v-on:click="show">Show Box</button>
+            <button class="hideButton" v-on:click="hide">Hide Box</button>
+
+            <div class="box" v-if="isVisible"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data() {
+                return {
+                    isVisible: null
+                }
+            },
+            methods: {
+                show() {
+                    this.isVisible = true
+                },
+                hide() {
+                    this.isVisible = false
+                }
+            }
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+</html>
