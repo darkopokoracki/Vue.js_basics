@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifecycle Hooks</title>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .box {
+            border: 2px solid black;
+            background: purple;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body> 
+
+    <h2>Lifecycle Hooks</h2>
+    <p> Hook is just a function. The Function start at specific 
+        point of component lifecycle
+    </p>
+    
+    <div id="app">
+        <button @click="toggleBox">Toggle Box</button>
+        <custom-box v-if="isVisible" />
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data() {
+                return {
+                    isVisible: false
+                }
+            },
+
+            methods: {
+                toggleBox() {
+                    this.isVisible = !this.isVisible
+                }
+            },
+
+            updated() {
+                console.log("Updated")
+            }
+        })
+
+        app.component('custom-box', {
+            template: `
+            <div class="box"></div> 
+            `,
+            created() {
+                console.log('Created')
+            },
+            mounted() {
+                console.log('Mounted')
+            },
+            unmounted() {
+                console.log('Unmounted')
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>
