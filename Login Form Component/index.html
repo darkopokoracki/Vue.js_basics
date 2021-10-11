@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        input {
+            margin: 1rem;
+            padding: .5rem;
+            font-size: 1.125rem;
+            display: block;
+        }
+
+        .form-title {
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" v-cloak>
+        <login-form />
+
+        <hr />
+
+        <p></p>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+
+        })
+        
+        app.component('login-form', {
+            template: `
+                <form class="login-form">
+                    <h1 class="form-title">{{ title }}</h1>
+                    <label>Email</label>
+                    <input type="email" v-model="email">
+                    <label>Password</label>
+                    <input type="password" v-model="password">
+                    <button @click.prevent="showText">Click</button>
+                </form>
+            `,
+            data() {
+                return {
+                    title: 'Login Form',
+                    email: '',
+                    password: ''
+                }
+            },
+            methods: {
+                showText() {
+                    console.log(this.email, this.password)
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+</body>
+</html>
